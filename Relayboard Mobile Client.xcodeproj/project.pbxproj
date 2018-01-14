@@ -7,15 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8644ED506EEDDDF111E9BEC /* Pods_Relayboard_Mobile_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46CCEF20D1F7C999FA2C7B2C /* Pods_Relayboard_Mobile_Client.framework */; };
 		CE676595200A8218009D8A4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE676594200A8218009D8A4F /* AppDelegate.swift */; };
 		CE676597200A8218009D8A4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE676596200A8218009D8A4F /* ViewController.swift */; };
 		CE67659A200A8218009D8A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE676598200A8218009D8A4F /* Main.storyboard */; };
 		CE67659D200A8218009D8A4F /* Relayboard_Mobile_Client.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE67659B200A8218009D8A4F /* Relayboard_Mobile_Client.xcdatamodeld */; };
 		CE67659F200A8218009D8A4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE67659E200A8218009D8A4F /* Assets.xcassets */; };
 		CE6765A2200A8218009D8A4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6765A0200A8218009D8A4F /* LaunchScreen.storyboard */; };
+		CE6765AB200A8260009D8A4F /* Relayboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765AA200A8260009D8A4F /* Relayboard.swift */; };
+		CE6765AF200A82D7009D8A4F /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765AE200A82D7009D8A4F /* Application.swift */; };
+		CE6765B2200A8581009D8A4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6765B1200A8581009D8A4F /* MapKit.framework */; };
+		CE6765B4200A8630009D8A4F /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765B3200A8630009D8A4F /* Sensor.swift */; };
+		CE6765B6200A9A83009D8A4F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE6765B5200A9A82009D8A4F /* Podfile */; };
+		CE6765B7200AA6BC009D8A4F /* Meteor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6765B8200AA6BC009D8A4F /* Meteor.framework */; };
+		CE6765BA200B3ACC009D8A4F /* PortalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */; };
+		CE6765BC200B5082009D8A4F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BB200B5082009D8A4F /* DataController.swift */; };
+		CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BE200BB228009D8A4F /* UIUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46CCEF20D1F7C999FA2C7B2C /* Pods_Relayboard_Mobile_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Relayboard_Mobile_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91566CC7890D01537FAB8577 /* Pods-Relayboard Mobile Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Relayboard Mobile Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Relayboard Mobile Client/Pods-Relayboard Mobile Client.debug.xcconfig"; sourceTree = "<group>"; };
+		B8BF6C1F995FD1FB15AC6372 /* Pods-Relayboard Mobile Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Relayboard Mobile Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-Relayboard Mobile Client/Pods-Relayboard Mobile Client.release.xcconfig"; sourceTree = "<group>"; };
 		CE676591200A8218009D8A4F /* Relayboard Mobile Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Relayboard Mobile Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE676594200A8218009D8A4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE676596200A8218009D8A4F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +37,15 @@
 		CE67659E200A8218009D8A4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE6765A1200A8218009D8A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE6765A3200A8218009D8A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE6765AA200A8260009D8A4F /* Relayboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relayboard.swift; sourceTree = "<group>"; };
+		CE6765AE200A82D7009D8A4F /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		CE6765B1200A8581009D8A4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CE6765B3200A8630009D8A4F /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		CE6765B5200A9A82009D8A4F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CE6765B8200AA6BC009D8A4F /* Meteor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Meteor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalSettingsViewController.swift; sourceTree = "<group>"; };
+		CE6765BB200B5082009D8A4F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		CE6765BE200BB228009D8A4F /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +53,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6765B7200AA6BC009D8A4F /* Meteor.framework in Frameworks */,
+				CE6765B2200A8581009D8A4F /* MapKit.framework in Frameworks */,
+				A8644ED506EEDDDF111E9BEC /* Pods_Relayboard_Mobile_Client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5089EF8213D492A201B7D46E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91566CC7890D01537FAB8577 /* Pods-Relayboard Mobile Client.debug.xcconfig */,
+				B8BF6C1F995FD1FB15AC6372 /* Pods-Relayboard Mobile Client.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CE676588200A8217009D8A4F = {
 			isa = PBXGroup;
 			children = (
+				CE6765B5200A9A82009D8A4F /* Podfile */,
 				CE676593200A8218009D8A4F /* Relayboard Mobile Client */,
 				CE676592200A8218009D8A4F /* Products */,
+				CE6765B0200A8581009D8A4F /* Frameworks */,
+				5089EF8213D492A201B7D46E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +93,11 @@
 		CE676593200A8218009D8A4F /* Relayboard Mobile Client */ = {
 			isa = PBXGroup;
 			children = (
+				CE6765BD200BB1F1009D8A4F /* Utils */,
+				CE6765AD200A82BF009D8A4F /* Core */,
+				CE6765AC200A827D009D8A4F /* Controllers */,
+				CE6765A9200A822E009D8A4F /* Models */,
 				CE676594200A8218009D8A4F /* AppDelegate.swift */,
-				CE676596200A8218009D8A4F /* ViewController.swift */,
 				CE676598200A8218009D8A4F /* Main.storyboard */,
 				CE67659E200A8218009D8A4F /* Assets.xcassets */,
 				CE6765A0200A8218009D8A4F /* LaunchScreen.storyboard */,
@@ -67,6 +107,51 @@
 			path = "Relayboard Mobile Client";
 			sourceTree = "<group>";
 		};
+		CE6765A9200A822E009D8A4F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE6765AA200A8260009D8A4F /* Relayboard.swift */,
+				CE6765B3200A8630009D8A4F /* Sensor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE6765AC200A827D009D8A4F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE676596200A8218009D8A4F /* ViewController.swift */,
+				CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */,
+				CE6765BB200B5082009D8A4F /* DataController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE6765AD200A82BF009D8A4F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE6765AE200A82D7009D8A4F /* Application.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE6765B0200A8581009D8A4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE6765B8200AA6BC009D8A4F /* Meteor.framework */,
+				CE6765B1200A8581009D8A4F /* MapKit.framework */,
+				46CCEF20D1F7C999FA2C7B2C /* Pods_Relayboard_Mobile_Client.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE6765BD200BB1F1009D8A4F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CE6765BE200BB228009D8A4F /* UIUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE6765A6200A8218009D8A4F /* Build configuration list for PBXNativeTarget "Relayboard Mobile Client" */;
 			buildPhases = (
+				8234BB6D423395BC5717131A /* [CP] Check Pods Manifest.lock */,
 				CE67658D200A8218009D8A4F /* Sources */,
 				CE67658E200A8218009D8A4F /* Frameworks */,
 				CE67658F200A8218009D8A4F /* Resources */,
+				A00C49802CCFF2932CF2DCD4 /* [CP] Embed Pods Frameworks */,
+				5520439CAAD27C03AB873FB3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -100,6 +188,11 @@
 					CE676590200A8218009D8A4F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -128,18 +221,85 @@
 			files = (
 				CE6765A2200A8218009D8A4F /* LaunchScreen.storyboard in Resources */,
 				CE67659F200A8218009D8A4F /* Assets.xcassets in Resources */,
+				CE6765B6200A9A83009D8A4F /* Podfile in Resources */,
 				CE67659A200A8218009D8A4F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5520439CAAD27C03AB873FB3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Relayboard Mobile Client/Pods-Relayboard Mobile Client-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8234BB6D423395BC5717131A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Relayboard Mobile Client-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A00C49802CCFF2932CF2DCD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Relayboard Mobile Client/Pods-Relayboard Mobile Client-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/InflectorKit/InflectorKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Meteor/Meteor.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSocket/PocketSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InflectorKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Meteor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Relayboard Mobile Client/Pods-Relayboard Mobile Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CE67658D200A8218009D8A4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6765AF200A82D7009D8A4F /* Application.swift in Sources */,
+				CE6765B4200A8630009D8A4F /* Sensor.swift in Sources */,
+				CE6765BA200B3ACC009D8A4F /* PortalSettingsViewController.swift in Sources */,
+				CE6765AB200A8260009D8A4F /* Relayboard.swift in Sources */,
 				CE676597200A8218009D8A4F /* ViewController.swift in Sources */,
+				CE6765BC200B5082009D8A4F /* DataController.swift in Sources */,
+				CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */,
 				CE676595200A8218009D8A4F /* AppDelegate.swift in Sources */,
 				CE67659D200A8218009D8A4F /* Relayboard_Mobile_Client.xcdatamodeld in Sources */,
 			);
@@ -276,6 +436,7 @@
 		};
 		CE6765A7200A8218009D8A4F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91566CC7890D01537FAB8577 /* Pods-Relayboard Mobile Client.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -290,6 +451,7 @@
 		};
 		CE6765A8200A8218009D8A4F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8BF6C1F995FD1FB15AC6372 /* Pods-Relayboard Mobile Client.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
