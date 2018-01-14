@@ -20,8 +20,6 @@ public class RelayboardApplication {
         
        
         self.relayboards = [String:Relayboard]()
-        self.relayboards!["rel1"] = Relayboard("rel1",title: "Relayboard 1")
-        self.relayboards!["rel2"] = Relayboard("rel2",title: "Relayboard 2")
         
         
         if let inputHost = UserDefaults.standard.object(forKey: "host") as? String {
@@ -52,10 +50,29 @@ public class RelayboardApplication {
                             if (err != nil) {
                                 print(err)
                             } else {
-                                print(result)
+                                let data = result as? String
+                                do {
+                                    let jsonData = try JSONSerialization.jsonObject(with: (data?.data(using: String.Encoding.utf8))!, options: .mutableContainers) as? Dictionary<String, Any>
+                                    if let items = jsonData!["relayboards"] as? NSArray {
+                                        for item  in items {
+                                            if let relayboard = item as? Dictionary<String,Any> {
+                                                if let id = relayboard["id"] as? String {
+                                                    if let config = relayboard["config"] as? Dictionary<String,AnyObject> {
+                                                        if let title = config["title"] as? String {
+                                                            self.relayboards?[id] = Relayboard(id,title:title)
+                                                            self.relayboards?[id]?.setConfig(config)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } catch {
+                                    print("Error parsing relayboards settings")
+                                }
                             }
                         })
-                        print("connected successfully")
+                       
                     }
                 }
             }
