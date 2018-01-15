@@ -48,28 +48,22 @@ public class Relayboard: NSObject {
         if let lng = config["lng"] as? CLLocationDegrees {
             self.location?.longitude = lng
         }
-        if let sensors = config["pins"] as? NSArray {
+        if let sensorsObj = config["pins"] as? NSArray {
             self.sensors = []
-            for sensorData in sensors {
-                if let sensorDictionary = sensorData as? Dictionary<String,String> {
-                    if let number = sensorDictionary["number"] as String? {
-                        print(number)
-                        let sensor = Sensor(number,relayboard: self)
-                        sensor.setConfig(sensorDictionary as AnyObject)
-                        self.sensors?.append(sensor)
+            
+            for sensorData in sensorsObj {
+                if let sensorDictionary = sensorData as? [String:Any] {
+                    for (key,value) in sensorDictionary {
+                        if key == "number" {
+                            print(value)
+                            let number = String(describing: value)
+                                let sensor = Sensor(number,relayboard:self)
+                                sensor.setConfig(sensorDictionary)
+                                self.sensors?.append(sensor)
+                        }
                     }
                 }
             }
         }
-        print("INITIALIZED RELAYBOARD "+self.id)
-        print("TItle: \(self.title!)")
-        if (self.location != nil) {
-            print("Location: \(self.location!.latitude),\(self.location!.longitude)")
-        }
-        print("Port: \(self.port)")
-        print("Baud rate: \(self.baudrate)")
-        print("Data cache granularity: \(self.data_cache_granularity)")
-        print("DB save period: \(self.db_save_period)")
     }
-    
 }

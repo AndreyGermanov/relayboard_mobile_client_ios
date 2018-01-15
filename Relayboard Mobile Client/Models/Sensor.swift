@@ -29,40 +29,38 @@ public class Sensor: NSObject {
         self.relayboard = relayboard
     }
     
-    public func setConfig(_ config: AnyObject) {
-        if let settings = config as? [String:String] {
-            if settings["type"] != nil {
-                switch settings["type"] {
-                case "relay"?:
-                    self.type = .RELAY
-                case "temperature"?:
-                    self.type = .TEMPERATURE
-                case "water_pump"?:
-                    self.type = .WATER_PUMP
-                default:
-                    break
+    public func setConfig(_ config: [String:Any]) {
+        for (key,value) in config {
+            if key == "type" {
+                if value != nil {
+                    switch String(describing:value) {
+                    case "relay":
+                        self.type = .RELAY
+                    case "temperature":
+                        self.type = .TEMPERATURE
+                    case "water_pump":
+                        self.type = .WATER_PUMP
+                    default:
+                        break
+                    }
                 }
             }
-            if settings["title"] != nil {
-                self.title = settings["title"]!
+            if key == "title" {
+                self.title = String(describing:value)
             }
-            if settings["send_live_data"] == "1" {
-                self.send_live_data = true
-            } else {
-                self.send_live_data = false
+            if key == "send_live_data" {
+                if (String(describing:value) == "1") {
+                    self.send_live_data = true
+                } else {
+                    self.send_live_data = false
+                }
             }
-            if let save_to_db_period = Int(settings["save_to_db_period"]!) {
-                self.save_to_db_period = save_to_db_period
+            if key == "save_to_db_period" {
+                self.save_to_db_period = value as? Int
             }
-            if let send_to_portal_period = Int(settings["send_to_portal_period"]!) {
-                self.send_to_portal_period = send_to_portal_period
+            if key == "send_to_portal_period" {
+                self.send_to_portal_period = value as? Int
             }
-            print("INITIALIZED SENSOR \(self.id) OF Relayboard \(self.relayboard.id)")
-            print("Title: \(self.title!)")
-            print("Type: \(self.type!)")
-            print("Send live data: \(self.send_live_data!)")
-            print("Save to DB period: \(self.save_to_db_period!)")
-            print("Send to portal period: \(self.send_to_portal_period!)")
         }
     }
 }
