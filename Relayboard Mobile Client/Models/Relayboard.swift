@@ -42,6 +42,8 @@ public class Relayboard: NSObject {
         if let db_save_period = config["db_save_period"] as? Int {
             self.db_save_period = db_save_period
         }
+        self.location = CLLocationCoordinate2D()
+
         if let lat = config["lat"] as? CLLocationDegrees {
             self.location?.latitude = lat
         }
