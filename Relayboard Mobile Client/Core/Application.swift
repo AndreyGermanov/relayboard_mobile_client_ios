@@ -13,7 +13,7 @@ public class RelayboardApplication {
     static let shared = RelayboardApplication()
     var dataController: DataController!
     
-    var relayboards : [String:Relayboard]? = nil
+    public var relayboards : [String:Relayboard]? = nil
     private var Meteor : METDDPClient?
     public func loadData() {
         var host = "",port="80",login="",password=""
@@ -67,6 +67,8 @@ public class RelayboardApplication {
                                             }
                                         }
                                     }
+                                    var notification = Notification.init(name: Notification.Name(rawValue: "INIT_COMPLETE"))
+                                    NotificationCenter.default.post(notification)
                                 } catch {
                                     print("Error parsing relayboards settings")
                                 }

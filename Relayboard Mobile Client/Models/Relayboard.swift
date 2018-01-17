@@ -57,7 +57,6 @@ public class Relayboard: NSObject {
                 if let sensorDictionary = sensorData as? [String:Any] {
                     for (key,value) in sensorDictionary {
                         if key == "number" {
-                            print(value)
                             let number = String(describing: value)
                                 let sensor = Sensor(number,relayboard:self)
                                 sensor.setConfig(sensorDictionary)

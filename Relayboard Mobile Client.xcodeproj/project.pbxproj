@@ -23,6 +23,7 @@
 		CE6765BA200B3ACC009D8A4F /* PortalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */; };
 		CE6765BC200B5082009D8A4F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BB200B5082009D8A4F /* DataController.swift */; };
 		CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BE200BB228009D8A4F /* UIUtils.swift */; };
+		CE6765C3200F5F46009D8A4F /* SitesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalSettingsViewController.swift; sourceTree = "<group>"; };
 		CE6765BB200B5082009D8A4F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		CE6765BE200BB228009D8A4F /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
+		CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				CE676596200A8218009D8A4F /* ViewController.swift */,
 				CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */,
 				CE6765BB200B5082009D8A4F /* DataController.swift */,
+				CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				CE6765AB200A8260009D8A4F /* Relayboard.swift in Sources */,
 				CE676597200A8218009D8A4F /* ViewController.swift in Sources */,
 				CE6765BC200B5082009D8A4F /* DataController.swift in Sources */,
+				CE6765C3200F5F46009D8A4F /* SitesMapViewController.swift in Sources */,
 				CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */,
 				CE676595200A8218009D8A4F /* AppDelegate.swift in Sources */,
 				CE67659D200A8218009D8A4F /* Relayboard_Mobile_Client.xcdatamodeld in Sources */,
