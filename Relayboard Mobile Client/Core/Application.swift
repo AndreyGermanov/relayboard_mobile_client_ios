@@ -19,8 +19,7 @@ public class RelayboardApplication {
         var host = "",port="80",login="",password=""
         
        
-        self.relayboards = [String:Relayboard]()
-        
+        self.relayboards = [String:Relayboard]()        
         
         if let inputHost = UserDefaults.standard.object(forKey: "host") as? String {
             host = inputHost
@@ -81,6 +80,20 @@ public class RelayboardApplication {
         } else {
             print("Incorrect connection settings")
         }
+    }
+    
+    public func getRelayboardByIndex(_ index: Int) -> Relayboard? {
+        var result: Relayboard?
+        if let relayboards = self.relayboards {
+            var counter = 0;
+            for (_,relayboard) in relayboards {
+                if counter == index {
+                    result = relayboard
+                }
+                counter = counter + 1
+            }
+        }
+        return result
     }
     
     public func isDataLoaded() -> Bool {

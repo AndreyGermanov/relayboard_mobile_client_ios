@@ -24,6 +24,7 @@
 		CE6765BC200B5082009D8A4F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BB200B5082009D8A4F /* DataController.swift */; };
 		CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BE200BB228009D8A4F /* UIUtils.swift */; };
 		CE6765C3200F5F46009D8A4F /* SitesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */; };
+		CEA2DEF82010B6EA00BE79F1 /* RelayboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		CE6765BB200B5082009D8A4F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		CE6765BE200BB228009D8A4F /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesMapViewController.swift; sourceTree = "<group>"; };
+		CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayboardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		CE6765AC200A827D009D8A4F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */,
 				CE676596200A8218009D8A4F /* ViewController.swift */,
 				CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */,
 				CE6765BB200B5082009D8A4F /* DataController.swift */,
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA2DEF82010B6EA00BE79F1 /* RelayboardTableViewCell.swift in Sources */,
 				CE6765AF200A82D7009D8A4F /* Application.swift in Sources */,
 				CE6765B4200A8630009D8A4F /* Sensor.swift in Sources */,
 				CE6765BA200B3ACC009D8A4F /* PortalSettingsViewController.swift in Sources */,

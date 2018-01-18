@@ -27,6 +27,4 @@ class DataController: NSObject {
             completionClosure()
         }
     }
-    
-    
 }

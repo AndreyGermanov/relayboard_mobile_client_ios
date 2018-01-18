@@ -8,11 +8,12 @@
 
 import MapKit
 
-public class Relayboard: NSObject {
+public class Relayboard: NSObject, MKAnnotation {
+    public var coordinate: CLLocationCoordinate2D
+    
     
     public var id: String
     public var title: String?
-    public var location: CLLocationCoordinate2D?
     public var port: String?
     public var baudrate: Int?
     public var data_cache_granularity: Int?
@@ -21,6 +22,7 @@ public class Relayboard: NSObject {
     
     init(_ id: String, title: String?) {
         self.id = id
+        self.coordinate = CLLocationCoordinate2D()
         if title  != nil {
             self.title = title
         } else {
@@ -42,13 +44,12 @@ public class Relayboard: NSObject {
         if let db_save_period = config["db_save_period"] as? Int {
             self.db_save_period = db_save_period
         }
-        self.location = CLLocationCoordinate2D()
-
+        
         if let lat = config["lat"] as? CLLocationDegrees {
-            self.location?.latitude = lat
+            self.coordinate.latitude = lat
         }
         if let lng = config["lng"] as? CLLocationDegrees {
-            self.location?.longitude = lng
+            self.coordinate.longitude = lng
         }
         if let sensorsObj = config["pins"] as? NSArray {
             self.sensors = []

@@ -13,8 +13,13 @@ class SitesMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var relayboardsTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
+        relayboardsTable.delegate = self
+        relayboardsTable.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(initMap), name: Notification.Name(rawValue:"INIT_COMPLETE"), object: nil)
     }
 
@@ -22,37 +27,57 @@ class SitesMapViewController: UIViewController {
         if let relayboards = RelayboardApplication.shared.relayboards {
             var coordinatesArray = [CLLocationCoordinate2D]()
             for (_,board) in relayboards {
-                if let location = board.location {
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = location
-                    annotation.title = board.title
-                    annotation.subtitle = board.title
-                    mapView.addAnnotation(annotation)
-                    coordinatesArray.append(location)
-                }
+                    mapView.addAnnotation(board)
+                    coordinatesArray.append(board.coordinate)
+                
             }
             let center = UIUtils.getCenterOfPins(pins: coordinatesArray)
-            //print(center);
-            //let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-            //let region = MKCoordinateRegion(center: center, span: span)
             mapView.setCenter(center, animated: true)
         }
+        relayboardsTable.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension SitesMapViewController: MKMapViewDelegate {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation as? Relayboard {
+        }
     }
-    */
+}
 
+extension SitesMapViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let relayboards = RelayboardApplication.shared.relayboards {
+            return relayboards.values.count
+        } else {
+            return 0
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RelayboardCell", for: indexPath) as! RelayboardTableViewCell
+        if let relayboard = RelayboardApplication.shared.getRelayboardByIndex(indexPath.row) {
+            cell.label.isHidden = false
+            cell.button.isHidden = false
+            cell.relayboard = relayboard
+            if let title = relayboard.title {
+                cell.label.text = title
+            }
+        } else {
+            cell.label.isHidden = true
+            cell.button.isHidden = true
+        }
+        return cell
+    }
 }

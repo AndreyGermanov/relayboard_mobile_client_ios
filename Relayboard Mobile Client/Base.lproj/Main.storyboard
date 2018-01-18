@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -177,6 +178,51 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0k1-dZ-Ohv">
                                 <rect key="frame" x="0.0" y="62" width="375" height="498"/>
                             </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q4f-95-aoo">
+                                <rect key="frame" x="0.0" y="568" width="375" height="99"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RelayboardCell" id="GSb-0G-kKC" customClass="RelayboardTableViewCell" customModule="Relayboard_Mobile_Client">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GSb-0G-kKC" id="6Am-re-og6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXx-7G-6RI">
+                                                    <rect key="frame" x="15" y="12" width="14" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="btJ-p0-RAe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wia-SG-jGX">
+                                                    <rect key="frame" x="326" y="6" width="34" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="ZOH-0Z-t4k"/>
+                                                    </constraints>
+                                                    <state key="normal" title="View"/>
+                                                    <connections>
+                                                        <action selector="viewRelayboard:" destination="GSb-0G-kKC" eventType="touchUpInside" id="Naa-Vz-Azd"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Wia-SG-jGX" secondAttribute="trailing" constant="15" id="7Pv-gl-goy"/>
+                                                <constraint firstItem="rXx-7G-6RI" firstAttribute="top" secondItem="6Am-re-og6" secondAttribute="topMargin" constant="1" id="GOf-O2-kAy"/>
+                                                <constraint firstItem="Wia-SG-jGX" firstAttribute="top" secondItem="6Am-re-og6" secondAttribute="top" constant="6" id="U0g-oR-42M"/>
+                                                <constraint firstItem="rXx-7G-6RI" firstAttribute="leading" secondItem="6Am-re-og6" secondAttribute="leadingMargin" id="bgp-UK-x3d"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="Wia-SG-jGX" id="vit-bH-x0F"/>
+                                            <outlet property="label" destination="rXx-7G-6RI" id="bh7-zt-C5X"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypc-G4-tTk">
                                 <rect key="frame" x="0.0" y="18" width="375" height="44"/>
                                 <items>
@@ -189,15 +235,20 @@
                             <constraint firstItem="ypc-G4-tTk" firstAttribute="top" secondItem="hZu-Ss-Df3" secondAttribute="top" constant="18" id="3LX-43-6lC"/>
                             <constraint firstItem="0k1-dZ-Ohv" firstAttribute="trailing" secondItem="OtN-Yq-PC7" secondAttribute="trailing" id="LSZ-pI-5bY"/>
                             <constraint firstItem="OtN-Yq-PC7" firstAttribute="bottom" secondItem="0k1-dZ-Ohv" secondAttribute="bottom" constant="107" id="Lw5-hu-cWN"/>
+                            <constraint firstItem="q4f-95-aoo" firstAttribute="trailing" secondItem="OtN-Yq-PC7" secondAttribute="trailing" id="QET-WG-SDC"/>
+                            <constraint firstItem="q4f-95-aoo" firstAttribute="bottom" secondItem="OtN-Yq-PC7" secondAttribute="bottom" id="WMu-Ti-klR"/>
+                            <constraint firstItem="q4f-95-aoo" firstAttribute="top" secondItem="0k1-dZ-Ohv" secondAttribute="bottom" constant="8" id="Zsz-j8-mSO"/>
                             <constraint firstItem="0k1-dZ-Ohv" firstAttribute="leading" secondItem="OtN-Yq-PC7" secondAttribute="leading" id="gCA-cl-yEr"/>
                             <constraint firstItem="0k1-dZ-Ohv" firstAttribute="top" secondItem="ypc-G4-tTk" secondAttribute="bottom" id="kOx-4V-c6h"/>
                             <constraint firstItem="ypc-G4-tTk" firstAttribute="leading" secondItem="OtN-Yq-PC7" secondAttribute="leading" id="nf7-je-RvH"/>
                             <constraint firstItem="ypc-G4-tTk" firstAttribute="trailing" secondItem="OtN-Yq-PC7" secondAttribute="trailing" id="t3a-jQ-ouK"/>
+                            <constraint firstItem="q4f-95-aoo" firstAttribute="leading" secondItem="OtN-Yq-PC7" secondAttribute="leading" id="u8N-fo-lTQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OtN-Yq-PC7"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="0k1-dZ-Ohv" id="avr-cl-0UU"/>
+                        <outlet property="relayboardsTable" destination="q4f-95-aoo" id="2Sn-7U-CIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uej-3g-mjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
