@@ -46,8 +46,7 @@ class SitesMapViewController: UIViewController {
 extension SitesMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation as? Relayboard {
-        }
+        relayboardsTable.reloadData()
     }
 }
 
@@ -74,10 +73,27 @@ extension SitesMapViewController: UITableViewDelegate, UITableViewDataSource {
             if let title = relayboard.title {
                 cell.label.text = title
             }
+           cell.backgroundColor = UIColor.white
+            if mapView.selectedAnnotations.count>0 {
+                for annotation in mapView.selectedAnnotations {
+                    if let annotated_relayboard = annotation as? Relayboard {
+                        if annotated_relayboard.id == relayboard.id {
+                            cell.backgroundColor = UIColor.lightGray
+                        }
+                    }
+                }
+            }
         } else {
             cell.label.isHidden = true
             cell.button.isHidden = true
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let relayboard = RelayboardApplication.shared.getRelayboardByIndex(indexPath.row) {
+            mapView.selectAnnotation(relayboard, animated: true)
+            mapView.setCenter(relayboard.coordinate, animated: true)
+        }
     }
 }

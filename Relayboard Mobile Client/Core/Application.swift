@@ -66,8 +66,9 @@ public class RelayboardApplication {
                                             }
                                         }
                                     }
-                                    var notification = Notification.init(name: Notification.Name(rawValue: "INIT_COMPLETE"))
+                                    let notification = Notification.init(name: Notification.Name(rawValue: "INIT_COMPLETE"))
                                     NotificationCenter.default.post(notification)
+                                    
                                 } catch {
                                     print("Error parsing relayboards settings")
                                 }
