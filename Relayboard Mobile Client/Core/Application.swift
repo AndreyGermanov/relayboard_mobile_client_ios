@@ -6,20 +6,19 @@
 //  Copyright © 2018 Andrey. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Meteor
 
 public class RelayboardApplication {
     static let shared = RelayboardApplication()
-    var dataController: DataController!
     
     public var relayboards : [String:Relayboard]? = nil
+    public var selectedRelayboard: Relayboard?
+    
     private var Meteor : METDDPClient?
-    public func loadData() {
+    public func connectToPortal(_ completion:@escaping (_ error:Any?)->Void) {
         var host = "",port="80",login="",password=""
-        
-       
-        self.relayboards = [String:Relayboard]()        
         
         if let inputHost = UserDefaults.standard.object(forKey: "host") as? String {
             host = inputHost
@@ -42,45 +41,91 @@ public class RelayboardApplication {
             if let Meteor = self.Meteor {
                 Meteor.connect()
                 Meteor.login(withEmail: login, password: password) { (error) in
-                    if let errorMsg = error {
-                        print(errorMsg)
-                    } else {
-                        Meteor.callMethod(withName: "getConfig", parameters: nil, completionHandler: { (result, err) in
-                            if (err != nil) {
-                                print(err)
-                            } else {
-                                let data = result as? String
-                                do {
-                                    let jsonData = try JSONSerialization.jsonObject(with: (data?.data(using: String.Encoding.utf8))!, options: .mutableContainers) as? Dictionary<String, Any>
-                                    if let items = jsonData!["relayboards"] as? NSArray {
-                                        for item  in items {
-                                            if let relayboard = item as? Dictionary<String,Any> {
-                                                if let id = relayboard["id"] as? String {
-                                                    if let config = relayboard["config"] as? Dictionary<String,AnyObject> {
-                                                        if let title = config["title"] as? String {
-                                                            self.relayboards?[id] = Relayboard(id,title:title)
-                                                            self.relayboards?[id]?.setConfig(config)
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    let notification = Notification.init(name: Notification.Name(rawValue: "INIT_COMPLETE"))
-                                    NotificationCenter.default.post(notification)
-                                    
-                                } catch {
-                                    print("Error parsing relayboards settings")
-                                }
-                            }
-                        })
-                       
-                    }
+                    completion(error)
                 }
             }
         } else {
-            print("Incorrect connection settings")
+            completion("Incorrect connection options")
         }
+    }
+    
+    public func getRelayboardsConfig(_ completion:@escaping (_ error: Any?)->Void)  {
+        self.Meteor?.callMethod(withName: "getConfig", parameters: nil, completionHandler: { (result, err) in
+            if (err != nil) {
+                completion(err)
+            } else {
+                let data = result as? String
+                do {
+                    let jsonData = try JSONSerialization.jsonObject(with: (data?.data(using: String.Encoding.utf8))!, options: .mutableContainers) as? Dictionary<String, Any>
+                    if let items = jsonData!["relayboards"] as? NSArray {
+                        for item  in items {
+                            if let relayboard = item as? Dictionary<String,Any> {
+                                if let id = relayboard["id"] as? String {
+                                    if let config = relayboard["config"] as? Dictionary<String,AnyObject> {
+                                        if let title = config["title"] as? String {
+                                            self.relayboards?[id] = Relayboard(id,title:title)
+                                            self.relayboards?[id]?.setConfig(config)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    completion(nil)
+                } catch {
+                    completion("Config parse error")
+                }
+            }
+        })
+    }
+
+    @objc func getRelayboardsStatus() {
+        self.Meteor?.callMethod(withName: "getStatus", parameters: nil, completionHandler: { (result, err) in
+            if (err != nil) {
+               print(err)
+            } else {
+                let data = result as? String
+                do {
+                    let jsonData = try JSONSerialization.jsonObject(with: (data?.data(using: String.Encoding.utf8))!, options: .mutableContainers) as? Dictionary<String, Any>
+                    
+                    if let items = jsonData!["statuses"] as? NSArray {
+                        for item  in items {
+                            if let relayboard_status = item as? Dictionary<String,Any> {
+                                if let id = relayboard_status["id"] as? String {
+                                    if let relayboard = self.relayboards?[id] {
+                                        relayboard.setStatus(relayboard_status)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch {
+                    print("Error parsing status")
+                }
+                
+            }
+        })
+    }
+    
+    public func initConfig(_ completion:@escaping (_ error: Any?) -> Void) {
+       
+        self.relayboards = [String:Relayboard]()        
+        
+        connectToPortal({(error) in
+            if let errorMsg = error {
+                completion(errorMsg)
+            } else {
+                self.getRelayboardsConfig({ (error) in
+                    if let errorMsg = error {
+                        completion(errorMsg)
+                    } else {
+                       
+                        completion(nil)
+                        
+                    }
+                })
+            }
+        })
     }
     
     public func getRelayboardByIndex(_ index: Int) -> Relayboard? {

@@ -13,6 +13,7 @@ class PortalSettingsViewController: UIViewController {
 
     @IBOutlet var settingsFields: [UITextField]!
     
+    // Load portal connection settings from UserDefaults storage and set to input fields
     override func viewDidLoad() {
         super.viewDidLoad()
         for textField in settingsFields {
@@ -38,10 +39,10 @@ class PortalSettingsViewController: UIViewController {
                 break
             }
         }
-        
-        // Do any additional setup after loading the view.
     }
 
+    // When user presses "Save" button, this handler saves  portal connection settings from input fields
+    // to UserDefaults storage after validation of data
     @IBAction func saveBtnClick(_ sender: Any) {
         var inputHost = ""
         var inputPort = ""
@@ -49,6 +50,7 @@ class PortalSettingsViewController: UIViewController {
         var inputPassword = ""
         var validationErrors = [String]()
         
+        // Fetch and validate input
         for textField in settingsFields {
             switch textField.tag {
                 case 1:
@@ -81,20 +83,14 @@ class PortalSettingsViewController: UIViewController {
             }
         }
 
+        // If no validation errors, store fetched values to UserDefaults storage
         if (validationErrors.count==0) {
             UserDefaults.standard.set(inputHost,forKey:"host")
             UserDefaults.standard.set(inputPort,forKey:"port")
             UserDefaults.standard.set(inputLogin,forKey:"login")
             UserDefaults.standard.set(inputPassword,forKey:"password")
         }
-        
-        
-        
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
+    }
+ 
 }

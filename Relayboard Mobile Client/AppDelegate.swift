@@ -6,6 +6,7 @@
 //  Copyright © 2018 Andrey. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -13,12 +14,22 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+    var statusTimer: Timer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        RelayboardApplication.shared.loadData()
-        // Override point for customization after application launch.
+        RelayboardApplication.shared.initConfig { (error) in
+            DispatchQueue.main.sync {
+                if  error != nil {
+                    let notification = Notification.init(name: Notification.Name(rawValue: "INIT_FAILED"))
+                    NotificationCenter.default.post(notification)
+                } else {
+                    let notification = Notification.init(name: Notification.Name(rawValue: "INIT_COMPLETE"))
+                    NotificationCenter.default.post(notification)
+                }
+                self.statusTimer = Timer.scheduledTimer(timeInterval: 1.0, target: RelayboardApplication.shared, selector: #selector(RelayboardApplication.shared.getRelayboardsStatus), userInfo: nil, repeats: true)
+                self.statusTimer.fire()
+            }
+        }
         return true
     }
 

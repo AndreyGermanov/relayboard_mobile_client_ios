@@ -20,6 +20,8 @@ public class Relayboard: NSObject, MKAnnotation {
     public var db_save_period: Int?
     public var sensors: [Sensor]?
     
+    public var status: (connected: Bool, online: Bool, timestamp: Int) = (connected: false, online: false, timestamp: 0)
+    
     init(_ id: String, title: String?) {
         self.id = id
         self.coordinate = CLLocationCoordinate2D()
@@ -68,4 +70,39 @@ public class Relayboard: NSObject, MKAnnotation {
             }
         }
     }
+    
+    public func setStatus(_ status: Dictionary<String,Any>) {
+        if let connected = status["connected"] as? Int {
+            self.status.connected = connected == 0 ? false : true
+        }
+        if let online = status["online"] as? Int {
+            self.status.online = online == 0 ? false : true
+        }
+        if let timestamp = status["timestamp"] as? Int {
+            self.status.timestamp = timestamp
+        }
+        if let sensor_status = status["status"] as? Dictionary<String,String> {
+            for (key,value) in sensor_status {
+                if let sensor = self.findSensorById(key) {
+                    sensor.setStatus(value)
+                }
+            }
+        }
+        
+        let notification = Notification.init(name: Notification.Name(rawValue: "RELAYBOARDS_STATUS_UPDATED"))
+        NotificationCenter.default.post(notification)
+    }
+    
+    public func findSensorById(_ id: String) -> Sensor? {
+        var result: Sensor?
+        if let sensors = self.sensors {
+            for var sensor in sensors {
+                if (sensor.id == id) {
+                    result = sensor
+                }
+            }
+        }
+        return result
+    }
+    
 }

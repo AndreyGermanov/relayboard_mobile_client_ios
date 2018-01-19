@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum SensorTypes {
+public enum SensorTypes {
     case RELAY
     case TEMPERATURE
     case WATER_PUMP
@@ -16,13 +16,14 @@ enum SensorTypes {
 
 public class Sensor: NSObject {
     
-    private var id: String
-    private var type: SensorTypes?
-    private var title: String?
-    private var send_live_data: Bool?
-    private var save_to_db_period: Int?
-    private var send_to_portal_period: Int?
-    private var relayboard: Relayboard
+    public var id: String
+    public var type: SensorTypes?
+    public var title: String?
+    public var send_live_data: Bool?
+    public var save_to_db_period: Int?
+    public var send_to_portal_period: Int?
+    public var relayboard: Relayboard
+    public var status: [String:Any]?
     
     init(_ id: String, relayboard: Relayboard) {
         self.id = id
@@ -60,6 +61,23 @@ public class Sensor: NSObject {
             }
             if key == "send_to_portal_period" {
                 self.send_to_portal_period = value as? Int
+            }
+        }
+    }
+    
+    public func setStatus(_ status: String) {
+        if self.status == nil {
+            self.status = [String:Any]()
+        }
+        if let type = self.type {
+            if type == SensorTypes.RELAY {
+                self.status?["active"] = status == "0" ? false : true
+            } else if type == SensorTypes.TEMPERATURE {
+                let parts = status.split(separator: "|")
+                if parts.count>1 {
+                    self.status?["temperature"] = parts[0]
+                    self.status?["humidity"] = parts[1]
+                }
             }
         }
     }

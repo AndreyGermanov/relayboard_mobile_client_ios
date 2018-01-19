@@ -25,6 +25,11 @@
 		CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765BE200BB228009D8A4F /* UIUtils.swift */; };
 		CE6765C3200F5F46009D8A4F /* SitesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */; };
 		CEA2DEF82010B6EA00BE79F1 /* RelayboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */; };
+		CEA2DEFA2011D65B00BE79F1 /* RelayboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DEF92011D65A00BE79F1 /* RelayboardViewController.swift */; };
+		CEA2DEFE2011D6FA00BE79F1 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DEFD2011D6FA00BE79F1 /* SensorTableViewCell.swift */; };
+		CEA2DF002011D72C00BE79F1 /* TemperatureSensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DEFF2011D72C00BE79F1 /* TemperatureSensorTableViewCell.swift */; };
+		CEA2DF022011D75A00BE79F1 /* RelaySensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DF012011D75A00BE79F1 /* RelaySensorTableViewCell.swift */; };
+		CEA2DF042011F9D500BE79F1 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DF032011F9D500BE79F1 /* RootNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		CE6765BE200BB228009D8A4F /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesMapViewController.swift; sourceTree = "<group>"; };
 		CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayboardTableViewCell.swift; sourceTree = "<group>"; };
+		CEA2DEF92011D65A00BE79F1 /* RelayboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayboardViewController.swift; sourceTree = "<group>"; };
+		CEA2DEFD2011D6FA00BE79F1 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		CEA2DEFF2011D72C00BE79F1 /* TemperatureSensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureSensorTableViewCell.swift; sourceTree = "<group>"; };
+		CEA2DF012011D75A00BE79F1 /* RelaySensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaySensorTableViewCell.swift; sourceTree = "<group>"; };
+		CEA2DF032011F9D500BE79F1 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,7 @@
 		CE676593200A8218009D8A4F /* Relayboard Mobile Client */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2DEFB2011D6A200BE79F1 /* Views */,
 				CE6765BD200BB1F1009D8A4F /* Utils */,
 				CE6765AD200A82BF009D8A4F /* Core */,
 				CE6765AC200A827D009D8A4F /* Controllers */,
@@ -123,11 +134,12 @@
 		CE6765AC200A827D009D8A4F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */,
 				CE676596200A8218009D8A4F /* ViewController.swift */,
 				CE6765B9200B3ACC009D8A4F /* PortalSettingsViewController.swift */,
 				CE6765BB200B5082009D8A4F /* DataController.swift */,
 				CE6765C2200F5F45009D8A4F /* SitesMapViewController.swift */,
+				CEA2DEF92011D65A00BE79F1 /* RelayboardViewController.swift */,
+				CEA2DF032011F9D500BE79F1 /* RootNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -156,6 +168,25 @@
 				CE6765BE200BB228009D8A4F /* UIUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CEA2DEFB2011D6A200BE79F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2DEFC2011D6B100BE79F1 /* TableCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CEA2DEFC2011D6B100BE79F1 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2DEF72010B6EA00BE79F1 /* RelayboardTableViewCell.swift */,
+				CEA2DEFD2011D6FA00BE79F1 /* SensorTableViewCell.swift */,
+				CEA2DEFF2011D72C00BE79F1 /* TemperatureSensorTableViewCell.swift */,
+				CEA2DF012011D75A00BE79F1 /* RelaySensorTableViewCell.swift */,
+			);
+			path = TableCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,14 +331,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA2DEF82010B6EA00BE79F1 /* RelayboardTableViewCell.swift in Sources */,
+				CEA2DF042011F9D500BE79F1 /* RootNavigationController.swift in Sources */,
+				CEA2DEFE2011D6FA00BE79F1 /* SensorTableViewCell.swift in Sources */,
 				CE6765AF200A82D7009D8A4F /* Application.swift in Sources */,
 				CE6765B4200A8630009D8A4F /* Sensor.swift in Sources */,
 				CE6765BA200B3ACC009D8A4F /* PortalSettingsViewController.swift in Sources */,
 				CE6765AB200A8260009D8A4F /* Relayboard.swift in Sources */,
+				CEA2DF022011D75A00BE79F1 /* RelaySensorTableViewCell.swift in Sources */,
+				CEA2DF002011D72C00BE79F1 /* TemperatureSensorTableViewCell.swift in Sources */,
 				CE676597200A8218009D8A4F /* ViewController.swift in Sources */,
 				CE6765BC200B5082009D8A4F /* DataController.swift in Sources */,
 				CE6765C3200F5F46009D8A4F /* SitesMapViewController.swift in Sources */,
 				CE6765BF200BB228009D8A4F /* UIUtils.swift in Sources */,
+				CEA2DEFA2011D65B00BE79F1 /* RelayboardViewController.swift in Sources */,
 				CE676595200A8218009D8A4F /* AppDelegate.swift in Sources */,
 				CE67659D200A8218009D8A4F /* Relayboard_Mobile_Client.xcdatamodeld in Sources */,
 			);

@@ -17,22 +17,21 @@ class RelayboardTableViewCell: UITableViewCell {
     var relayboard: Relayboard?
     
     var isOnline: Bool = false
+    var viewController: SitesMapViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     @IBAction func viewRelayboard(_ sender: Any) {
         if let relayboard = self.relayboard {
-            print(relayboard.id)
+            RelayboardApplication.shared.selectedRelayboard = relayboard
+            viewController?.performSegue(withIdentifier: "relayViewSegue", sender: self.viewController)
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.selectedBackgroundView?.backgroundColor = UIColor.lightGray
-        // Configure the view for the selected state
     }
 
 }
