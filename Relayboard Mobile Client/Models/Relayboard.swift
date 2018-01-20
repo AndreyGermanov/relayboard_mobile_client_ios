@@ -88,7 +88,6 @@ public class Relayboard: NSObject, MKAnnotation {
                 }
             }
         }
-        
         let notification = Notification.init(name: Notification.Name(rawValue: "RELAYBOARDS_STATUS_UPDATED"))
         NotificationCenter.default.post(notification)
     }

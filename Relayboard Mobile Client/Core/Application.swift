@@ -13,8 +13,10 @@ import Meteor
 public class RelayboardApplication {
     static let shared = RelayboardApplication()
     
+    public var statusTimer: Timer!
     public var relayboards : [String:Relayboard]? = nil
     public var selectedRelayboard: Relayboard?
+    public var controllers: [String:UIViewController] = [String:UIViewController]()
     
     private var Meteor : METDDPClient?
     public func connectToPortal(_ completion:@escaping (_ error:Any?)->Void) {
@@ -34,7 +36,6 @@ public class RelayboardApplication {
         
         if let inputPassword = UserDefaults.standard.object(forKey: "password") as? String {
             password = inputPassword
-            
         }
         if (host.count != 0 && port.count != 0 && login.count != 0) {
             self.Meteor = METCoreDataDDPClient.init(serverURL: URL(string: "ws://"+host+":"+port+"/websocket")!)
@@ -50,6 +51,7 @@ public class RelayboardApplication {
     }
     
     public func getRelayboardsConfig(_ completion:@escaping (_ error: Any?)->Void)  {
+        self.relayboards = [String:Relayboard]()
         self.Meteor?.callMethod(withName: "getConfig", parameters: nil, completionHandler: { (result, err) in
             if (err != nil) {
                 completion(err)
@@ -108,8 +110,6 @@ public class RelayboardApplication {
     }
     
     public func initConfig(_ completion:@escaping (_ error: Any?) -> Void) {
-       
-        self.relayboards = [String:Relayboard]()        
         
         connectToPortal({(error) in
             if let errorMsg = error {

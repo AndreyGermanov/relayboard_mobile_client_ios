@@ -22,8 +22,19 @@ class SitesMapViewController: UIViewController {
         relayboardsTable.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(initView), name: Notification.Name(rawValue:"INIT_COMPLETE"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: Notification.Name(rawValue:"RELAYBOARDS_STATUS_UPDATED"), object: nil)
+        
+        let settingsBtn = UIBarButtonItem()
+        settingsBtn.target = self
+        settingsBtn.title = "Settings"
+        settingsBtn.action = #selector(self.showSettings)
+        self.navigationItem.rightBarButtonItem = settingsBtn
+        self.initView()
     }
 
+    @objc func showSettings() {
+        self.performSegue(withIdentifier: "portalConnectionSettingsSegue", sender: self)
+    }
+    
     // Add data to map and to table after it loaded from portal server
     @objc func initView() {
         if let relayboards = RelayboardApplication.shared.relayboards {
