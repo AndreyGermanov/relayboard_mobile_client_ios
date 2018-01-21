@@ -10,13 +10,15 @@ import Foundation
 import UIKit
 import Meteor
 
-public class RelayboardApplication {
+public class RelayboardApplication: NSObject {
+    
+    
     static let shared = RelayboardApplication()
     
     public var statusTimer: Timer!
+    public var connectionTimer: Timer!
     public var relayboards : [String:Relayboard]? = nil
     public var selectedRelayboard: Relayboard?
-    public var controllers: [String:UIViewController] = [String:UIViewController]()
     
     private var Meteor : METDDPClient?
     public func connectToPortal(_ completion:@escaping (_ error:Any?)->Void) {
@@ -37,13 +39,17 @@ public class RelayboardApplication {
         if let inputPassword = UserDefaults.standard.object(forKey: "password") as? String {
             password = inputPassword
         }
+        
         if (host.count != 0 && port.count != 0 && login.count != 0) {
             self.Meteor = METCoreDataDDPClient.init(serverURL: URL(string: "ws://"+host+":"+port+"/websocket")!)
             if let Meteor = self.Meteor {
+               
                 Meteor.connect()
                 Meteor.login(withEmail: login, password: password) { (error) in
                     completion(error)
                 }
+            } else {
+                completion("Connection error")
             }
         } else {
             completion("Incorrect connection options")
@@ -95,7 +101,9 @@ public class RelayboardApplication {
                             if let relayboard_status = item as? Dictionary<String,Any> {
                                 if let id = relayboard_status["id"] as? String {
                                     if let relayboard = self.relayboards?[id] {
-                                        relayboard.setStatus(relayboard_status)
+                                        OperationQueue.main.addOperation {
+                                            relayboard.setStatus(relayboard_status)
+                                        }
                                     }
                                 }
                             }
@@ -146,7 +154,7 @@ public class RelayboardApplication {
         return relayboards != nil
     }
     
-    private init() {
+    private override init() {
     }
+    
 }
-

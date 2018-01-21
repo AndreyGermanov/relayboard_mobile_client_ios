@@ -16,7 +16,7 @@ class PortalSettingsViewController: UIViewController {
     // Load portal connection settings from UserDefaults storage and set to input fields
     override func viewDidLoad() {
         super.viewDidLoad()
-        RelayboardApplication.shared.controllers["connection_settings"] = self
+
         for textField in settingsFields {
             switch textField.tag {
             case 1:
