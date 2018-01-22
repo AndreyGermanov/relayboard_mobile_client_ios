@@ -19,6 +19,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="nzk-6i-K72">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RELAYBOARD manager" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZE-H5-0zf">
                                 <rect key="frame" x="16" y="20" width="288" height="116"/>
                                 <constraints>
@@ -30,18 +33,16 @@
                                 <color key="shadowColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RRI-eS-vvq">
-                                <rect key="frame" x="142" y="153" width="37" height="37"/>
-                                <color key="color" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YZE-H5-0zf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1w8-4c-b0y"/>
+                            <constraint firstItem="nzk-6i-K72" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="5w2-IE-MEs"/>
+                            <constraint firstItem="nzk-6i-K72" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GCC-sk-hAR"/>
                             <constraint firstItem="YZE-H5-0zf" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="Q6Y-uC-Ov4"/>
-                            <constraint firstItem="RRI-eS-vvq" firstAttribute="top" secondItem="YZE-H5-0zf" secondAttribute="bottom" constant="17" id="dKt-62-HhL"/>
-                            <constraint firstItem="YZE-H5-0zf" firstAttribute="centerX" secondItem="RRI-eS-vvq" secondAttribute="centerX" id="oc3-dp-78w"/>
+                            <constraint firstItem="nzk-6i-K72" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="a1m-bX-Zli"/>
                             <constraint firstItem="YZE-H5-0zf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="v1N-Az-2Dw"/>
+                            <constraint firstItem="nzk-6i-K72" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xIf-a9-ooG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -51,4 +52,7 @@
             <point key="canvasLocation" x="50.625" y="373.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash" width="3264" height="4896"/>
+    </resources>
 </document>

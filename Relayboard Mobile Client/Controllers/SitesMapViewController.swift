@@ -40,8 +40,8 @@ class SitesMapViewController: UIViewController {
         if let relayboards = RelayboardApplication.shared.relayboards {
             var coordinatesArray = [CLLocationCoordinate2D]()
             for (_,board) in relayboards {
-                    mapView.addAnnotation(board)
-                    coordinatesArray.append(board.coordinate)
+                mapView.addAnnotation(board)
+                coordinatesArray.append(board.coordinate)
                 
             }
             let center = UIUtils.getCenterOfPins(pins: coordinatesArray)
@@ -51,6 +51,24 @@ class SitesMapViewController: UIViewController {
     }
     
     @objc func refreshView() {
+        for annotation in mapView.annotations {
+            let view = mapView.view(for: annotation)
+            var image = UIImage(named: "pin_online")
+            if let relayboard = annotation as? Relayboard {
+                if (!relayboard.status.online) {
+                    image = UIImage(named: "pin_offline")
+                }
+                if (mapView.selectedAnnotations.count>0) {
+                    if (mapView.selectedAnnotations[0].isEqual(annotation)) {
+                        view?.image = image?.resize(50)
+                    } else {
+                        view?.image = image?.resize(40)
+                    }
+                } else {
+                    view?.image = image?.resize(40)
+                }
+            }
+        }
         relayboardsTable.reloadData()
     }
 }
@@ -61,6 +79,19 @@ extension SitesMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // redraw table, using info about currently selected pin
         relayboardsTable.reloadData()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKAnnotationView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        annotationView.annotation = annotation
+        var image = UIImage(named: "pin_online")
+        if let relayboard = annotation as? Relayboard {
+            if (!relayboard.status.online) {
+                image = UIImage(named: "pin_offline")
+            }
+            annotationView.image = image?.resize(40)
+        }
+        return annotationView
     }
 }
 
@@ -96,6 +127,11 @@ extension SitesMapViewController: UITableViewDelegate, UITableViewDataSource {
             if let title = relayboard.title {
                 cell.label.text = title
             }
+            if (relayboard.status.online) {
+                cell.statusImageView.image = UIImage(named: "relayboard_online")
+            } else {
+                cell.statusImageView.image = UIImage(named: "relayboard_offline")
+            }
            cell.backgroundColor = UIColor.white
             // Set background of cell, depending on selected relayboard on map
             if mapView.selectedAnnotations.count>0 {
@@ -124,4 +160,35 @@ extension SitesMapViewController: UITableViewDelegate, UITableViewDataSource {
             mapView.setCenter(relayboard.coordinate, animated: true)
         }
     }
+}
+
+extension UIImage {
+    
+    func resize(_ maxWidthHeight : Double)-> UIImage? {
+        
+        let actualHeight = Double(size.height)
+        let actualWidth = Double(size.width)
+        var maxWidth = 0.0
+        var maxHeight = 0.0
+        
+        if actualWidth > actualHeight {
+            maxWidth = maxWidthHeight
+            let per = (100.0 * maxWidthHeight / actualWidth)
+            maxHeight = (actualHeight * per) / 100.0
+        }else{
+            maxHeight = maxWidthHeight
+            let per = (100.0 * maxWidthHeight / actualHeight)
+            maxWidth = (actualWidth * per) / 100.0
+        }
+        
+        let hasAlpha = true
+        let scale: CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: maxWidth, height: maxHeight), !hasAlpha, scale)
+        self.draw(in: CGRect(origin: .zero, size: CGSize(width: maxWidth, height: maxHeight)))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+    
 }

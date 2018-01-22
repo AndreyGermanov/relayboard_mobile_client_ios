@@ -30,6 +30,7 @@
 		CEA2DF042011F9D500BE79F1 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DF032011F9D500BE79F1 /* RootNavigationController.swift */; };
 		CEA2DF07201391F800BE79F1 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DF06201391F700BE79F1 /* LoadViewController.swift */; };
 		CEA2DF092013B78600BE79F1 /* RetryConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DF082013B78500BE79F1 /* RetryConnectionViewController.swift */; };
+		CEA2E0132016716800BE79F1 /* appicon_gen.sh in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E0122016716600BE79F1 /* appicon_gen.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		CEA2DF032011F9D500BE79F1 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		CEA2DF06201391F700BE79F1 /* LoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
 		CEA2DF082013B78500BE79F1 /* RetryConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryConnectionViewController.swift; sourceTree = "<group>"; };
+		CEA2E0122016716600BE79F1 /* appicon_gen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = appicon_gen.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		CE676593200A8218009D8A4F /* Relayboard Mobile Client */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2E0112016713A00BE79F1 /* Scripts */,
 				CEA2DEFB2011D6A200BE79F1 /* Views */,
 				CE6765BD200BB1F1009D8A4F /* Utils */,
 				CE6765AD200A82BF009D8A4F /* Core */,
@@ -189,6 +192,14 @@
 			path = TableCells;
 			sourceTree = "<group>";
 		};
+		CEA2E0112016713A00BE79F1 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2E0122016716600BE79F1 /* appicon_gen.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,6 +271,7 @@
 				CE67659F200A8218009D8A4F /* Assets.xcassets in Resources */,
 				CE6765B6200A9A83009D8A4F /* Podfile in Resources */,
 				CE67659A200A8218009D8A4F /* Main.storyboard in Resources */,
+				CEA2E0132016716800BE79F1 /* appicon_gen.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

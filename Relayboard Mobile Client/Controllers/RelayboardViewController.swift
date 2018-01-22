@@ -76,8 +76,8 @@ extension RelayboardViewController : UITableViewDelegate, UITableViewDataSource 
                                 tableCell.temperatureLabel.text = ""
                                 tableCell.humidityLabel.text = ""
                                 if let status = sensor.status {
-                                    tableCell.temperatureLabel.text = String(describing:status["temperature"]!)
-                                    tableCell.humidityLabel.text = String(describing:status["humidity"]!)
+                                    tableCell.temperatureLabel.text = String(describing:status["temperature"]!)+" °C"
+                                    tableCell.humidityLabel.text = String(describing:status["humidity"]!)+" %"
                                 }
                                 tableCell.titleLabel.text = sensor.title
                                 cell = tableCell
@@ -103,7 +103,7 @@ extension RelayboardViewController : UITableViewDelegate, UITableViewDataSource 
                     let sensor = sensors[indexPath.row]
                     switch sensor.type! {
                     case SensorTypes.TEMPERATURE:
-                        result = 71.0
+                        result = 105.0
                     default:
                         result = tableView.rowHeight
                     }

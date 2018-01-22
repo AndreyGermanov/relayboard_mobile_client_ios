@@ -14,6 +14,7 @@ class RelayboardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var button: UIButton!
     
+    @IBOutlet weak var statusImageView: UIImageView!
     var relayboard: Relayboard?
     
     var isOnline: Bool = false

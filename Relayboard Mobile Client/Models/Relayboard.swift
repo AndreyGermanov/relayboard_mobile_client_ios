@@ -33,25 +33,39 @@ public class Relayboard: NSObject, MKAnnotation {
     }
     
     public func setConfig(_ config: Dictionary<String,AnyObject>) {
+        for (key,value) in config {
 
-        if let port = config["port"] as? String {
-            self.port = port
-        }
-        if let baudrate = config["baudrate"] as? Int {
-            self.baudrate = baudrate
-        }
-        if let data_cache_granularity = config["data_cache_granularity"] as? Int {
-            self.data_cache_granularity = data_cache_granularity
-        }
-        if let db_save_period = config["db_save_period"] as? Int {
-            self.db_save_period = db_save_period
-        }
-        
-        if let lat = config["lat"] as? CLLocationDegrees {
-            self.coordinate.latitude = lat
-        }
-        if let lng = config["lng"] as? CLLocationDegrees {
-            self.coordinate.longitude = lng
+            if key == "port" {
+                if let port = value as? String {
+                    self.port = port
+                }
+            }
+            if key == "baudrate" {
+                if let baudrate = value as? Int {
+                    self.baudrate = baudrate
+                }
+            }
+            if key == "data_cache_granularity" {
+                if let data_cache_granularity = value as? Int {
+                    self.data_cache_granularity = data_cache_granularity
+                }
+            }
+            if key == "db_save_period" {
+                if let db_save_period = value as? Int {
+                    self.db_save_period = db_save_period
+                }
+            }
+
+            if key == "lat" {
+                if let lat = value as? CLLocationDegrees {
+                    self.coordinate.latitude = lat
+                }
+            }
+            if key == "lng" {
+                if let lng = value as? CLLocationDegrees {
+                    self.coordinate.longitude = lng
+                }
+            }
         }
         if let sensorsObj = config["pins"] as? NSArray {
             self.sensors = []
