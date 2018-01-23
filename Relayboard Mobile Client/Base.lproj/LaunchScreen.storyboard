@@ -34,7 +34,7 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YZE-H5-0zf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1w8-4c-b0y"/>
                             <constraint firstItem="nzk-6i-K72" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="5w2-IE-MEs"/>

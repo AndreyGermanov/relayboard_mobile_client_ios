@@ -12,7 +12,7 @@ import CoreData
 class PortalSettingsViewController: UIViewController {
 
     @IBOutlet var settingsFields: [UITextField]!
-    
+    var activeTextField: UITextField?
     // Load portal connection settings from UserDefaults storage and set to input fields
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,9 @@ class PortalSettingsViewController: UIViewController {
         
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveBtnClick))
         self.navigationItem.rightBarButtonItem = saveButton
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     func saveSettings() -> Bool {
@@ -110,4 +113,38 @@ class PortalSettingsViewController: UIViewController {
         self.saveSettings()
     }
  
+}
+
+extension PortalSettingsViewController: UITextFieldDelegate {
+    
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("BEGIN EDIT")
+        self.activeTextField = textField
+        return true
+    }
+    
+    @objc func keyboardWillShow(notification:NSNotification) {
+        print("KEYBOARD APPEARED")
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y = 0
+            let input_field_origin = activeTextField!.convert(activeTextField!.frame.origin, to: self.view)
+            if self.view.frame.height-keyboardSize.height-(self.navigationController?.navigationBar.frame.height)!<(input_field_origin.y+activeTextField!.frame.height) {
+                self.view.frame.origin.y = self.view.frame.origin.y -
+                    activeTextField!.frame.origin.y
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification) {
+        self.view.frame.origin.y = 0
+    }
 }
