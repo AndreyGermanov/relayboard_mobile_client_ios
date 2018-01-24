@@ -2,18 +2,26 @@
 //  PortalSettingsViewController.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 14.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 14.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// View controller for "Connection settings" screen
 
 import UIKit
 import CoreData
 
 class PortalSettingsViewController: UIViewController {
 
+    // Collection of outlets for connection settings fields: "host", "port", "login" and "password"
     @IBOutlet var settingsFields: [UITextField]!
+    
+    // Pointer to current focused field
     var activeTextField: UITextField?
-    // Load portal connection settings from UserDefaults storage and set to input fields
+    
+    // Function starts when viewappears for the first time
+    // It loads portal connection settings from UserDefaults storage and set to input fields,
+    // also adds observers for keyboard show and hide events and event listener for "Save" button
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,7 +55,8 @@ class PortalSettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    
+    // Function used by other functions to validate and save connection settings to User Defaults
     func saveSettings() -> Bool {
         var inputHost = ""
         var inputPort = ""
@@ -55,7 +64,6 @@ class PortalSettingsViewController: UIViewController {
         var inputPassword = ""
         var validationErrors = [String]()
         
-        // Fetch and validate input
         for textField in settingsFields {
             switch textField.tag {
             case 1:
@@ -88,7 +96,6 @@ class PortalSettingsViewController: UIViewController {
             }
         }
         
-        // If no validation errors, store fetched values to UserDefaults storage
         if (validationErrors.count==0) {
             UserDefaults.standard.set(inputHost,forKey:"host")
             UserDefaults.standard.set(inputPort,forKey:"port")
@@ -99,7 +106,9 @@ class PortalSettingsViewController: UIViewController {
             return false
         }
     }
-    
+
+    // Function runs when user presses "Save and Reconnect" button. It first saves connection settings to User Defaults and then
+    // moves to "Loading" screen, which tries to connect to portal using saved settings
     @IBAction func saveAndReconnectBtnClick(_ sender: Any) {
         if self.saveSettings() {
             self.navigationController?.popToRootViewController(animated:false)
@@ -115,25 +124,29 @@ class PortalSettingsViewController: UIViewController {
  
 }
 
+//MARK: Text fields delegate
 extension PortalSettingsViewController: UITextFieldDelegate {
     
+    // Function dismisses onscreen keyboard when user touches screen (out of text fields)
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
+    // Function dismisses onscreen keyboard when user presses "Return" button on it
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    // Method fires when user focues input field. It sets active field parameter for future use
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("BEGIN EDIT")
         self.activeTextField = textField
         return true
     }
     
+    // Method fire when onscreen keyboard begins to appear on screen. It calculates to which distance need to scroll
+    // screen to make sure that onscreen keyboard not overlap active text field and scrolls screen to this position
     @objc func keyboardWillShow(notification:NSNotification) {
-        print("KEYBOARD APPEARED")
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y = 0
             let input_field_origin = activeTextField!.convert(activeTextField!.frame.origin, to: self.view)
@@ -144,6 +157,7 @@ extension PortalSettingsViewController: UITextFieldDelegate {
         }
     }
     
+    // Method fire when onscreen keyboard dismissed. It scrolls screen back to initial position
     @objc func keyboardWillHide(notification:NSNotification) {
         self.view.frame.origin.y = 0
     }

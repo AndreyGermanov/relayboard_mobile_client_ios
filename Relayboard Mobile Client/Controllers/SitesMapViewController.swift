@@ -2,19 +2,25 @@
 //  SitesMapViewController.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 17.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 17.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// View controller for "Relayboards List" screen
 
 import UIKit
 import MapKit
 
 class SitesMapViewController: UIViewController {
 
+    // Outlet for Map
     @IBOutlet weak var mapView: MKMapView!
     
+    // Outlet for table below the map
     @IBOutlet weak var relayboardsTable: UITableView!
     
+    // Fires when view appears for the first time. Setup all needed notification observers, delegates, setup Navigation panel
+    // and initializes data inside the map and the table
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -31,11 +37,12 @@ class SitesMapViewController: UIViewController {
         self.initView()
     }
 
+    // Starts when user presses "Settings" button. Moves to "Connection Settings" screen
     @objc func showSettings() {
         self.performSegue(withIdentifier: "portalConnectionSettingsSegue", sender: self)
     }
     
-    // Add data to map and to table after it loaded from portal server
+    // Add data to map and to table initially and when new data comes from portal server
     @objc func initView() {
         if let relayboards = RelayboardApplication.shared.relayboards {
             var coordinatesArray = [CLLocationCoordinate2D]()
@@ -50,6 +57,8 @@ class SitesMapViewController: UIViewController {
         relayboardsTable.reloadData()
     }
     
+    // Function responds to "RELAYBOARD_STATUS_UPDATED" event and reload map and table to show new status of relayboards
+    // and sensors in it
     @objc func refreshView() {
         for annotation in mapView.annotations {
             let view = mapView.view(for: annotation)
@@ -73,6 +82,7 @@ class SitesMapViewController: UIViewController {
     }
 }
 
+// MARK: Map event handlers
 extension SitesMapViewController: MKMapViewDelegate {
     
     // When user selects pin on map
@@ -80,7 +90,9 @@ extension SitesMapViewController: MKMapViewDelegate {
         // redraw table, using info about currently selected pin
         relayboardsTable.reloadData()
     }
-    
+
+    // Handler for drawing marker depending on status of relayboard. Draws "green" marker if relayboard is online
+    // or "red" marker if it offline
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = MKAnnotationView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         annotationView.annotation = annotation
@@ -94,6 +106,8 @@ extension SitesMapViewController: MKMapViewDelegate {
         return annotationView
     }
 }
+
+// MARK: TableView event handlers
 
 extension SitesMapViewController: UITableViewDelegate, UITableViewDataSource {
     // Set number of items in section of Table
@@ -164,6 +178,7 @@ extension SitesMapViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension UIImage {
     
+    // Function resizes image proportionaly and returns resized image
     func resize(_ maxWidthHeight : Double)-> UIImage? {
         
         let actualHeight = Double(size.height)

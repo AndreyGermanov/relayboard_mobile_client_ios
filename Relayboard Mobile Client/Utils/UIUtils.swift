@@ -2,14 +2,18 @@
 //  UIUtils.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 14.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 14.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// Class with utility functions
 
 import UIKit
 import MapKit
 
 class UIUtils: NSObject {
+    
+    // Returns control from provided array of controls by it tag
     static func findControlByTag(controls: [UIControl], tag: Int) -> UIControl? {
         for control in controls {
             if control.tag == tag {
@@ -19,6 +23,7 @@ class UIUtils: NSObject {
         return nil
     }
     
+    // Returns a coordinate of center of provided array of points (latidute, longitude)
     static func getCenterOfPins(pins:[CLLocationCoordinate2D]) -> CLLocationCoordinate2D {
         func rad2degr(_ rad: Double) -> Double {
             return rad*180/Double.pi

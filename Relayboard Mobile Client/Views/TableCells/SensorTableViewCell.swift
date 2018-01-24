@@ -2,22 +2,16 @@
 //  SensorTableViewCell.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 19.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 19.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// Base class for cells of Sensors table on "Relayboard" screen.
 
 import UIKit
 
 class SensorTableViewCell: UITableViewCell {
     
+    // Link to sensor, connected to this cell
     public var sensor : Sensor?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
 }

@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 13.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 13.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
 
 import Foundation
@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    // Starts after application initializes but before display first view
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         return true
     }

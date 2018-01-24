@@ -2,26 +2,45 @@
 //  Relayboard.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 13.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 13.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// Data model which contain information about Relayboard entity and it current status.
+// Also has one-to-many relationship with Sensor model
 
 import MapKit
 
 public class Relayboard: NSObject, MKAnnotation {
+    
+    // Latitude and Longitude of place, in which this relayboard installed
     public var coordinate: CLLocationCoordinate2D
     
-    
+    // ID of relayboard
     public var id: String
+    
+    // title of relayboard
     public var title: String?
+    
+    // Serial port number of path
     public var port: String?
+    
+    // Serial port baudrate
     public var baudrate: Int?
+    
+    // Detail of data cache (how often to aggregate data in cache)
     public var data_cache_granularity: Int?
+    
+    // How often to save data from sensors to database (seconds)
     public var db_save_period: Int?
+    
+    // Array of sensor pointers
     public var sensors: [Sensor]?
     
+    // Current status of relayboard
     public var status: (connected: Bool, online: Bool, timestamp: Int) = (connected: false, online: false, timestamp: 0)
     
+    // Class constructor. Initializes relayboard with provided ID and title
     init(_ id: String, title: String?) {
         self.id = id
         self.coordinate = CLLocationCoordinate2D()
@@ -32,6 +51,8 @@ public class Relayboard: NSObject, MKAnnotation {
         }
     }
     
+    // Fills all fields of model using provided data dictionary. Also create Sensor objects for each sensor data row in
+    // dictionary
     public func setConfig(_ config: Dictionary<String,AnyObject>) {
         for (key,value) in config {
 
@@ -85,6 +106,8 @@ public class Relayboard: NSObject, MKAnnotation {
         }
     }
     
+    // Fills current status information, returned from portal and fires "RELAYBOARDS_STATUS_UPDATED" notification,
+    // which allows to all listeners to update UI with new data
     public func setStatus(_ status: Dictionary<String,Any>) {
         if let connected = status["connected"] as? Int {
             self.status.connected = connected == 0 ? false : true
@@ -106,6 +129,7 @@ public class Relayboard: NSObject, MKAnnotation {
         NotificationCenter.default.post(notification)
     }
     
+    // Utility function whic returns sensor index by provided UID
     public func findSensorById(_ id: String) -> Sensor? {
         var result: Sensor?
         if let sensors = self.sensors {

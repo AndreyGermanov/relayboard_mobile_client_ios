@@ -2,9 +2,14 @@
 //  Application.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 13.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 13.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// Core Application class, implemented as singleton. Aggregates information about
+// Connection to portal, list of Relayboards. Contains methods to connect to portal
+// and fetch infomation from it and construct Relayboards and Sensors data models using
+// received data and status.
 
 import Foundation
 import UIKit
@@ -12,15 +17,22 @@ import Meteor
 
 public class RelayboardApplication: NSObject {
     
-    
+    // Singleton pointer
     static let shared = RelayboardApplication()
     
+    // Timer, used to get current status of relayboards every second
     public var statusTimer: Timer!
+    // Timer, used to connect/reconnect to portal if needed
     public var connectionTimer: Timer!
+    // Dictionary with list of relayboards
     public var relayboards : [String:Relayboard]? = nil
+    // Pointer to selected relayboard
     public var selectedRelayboard: Relayboard?
     
+    // Portal connection pointer
     private var Meteor : METDDPClient?
+    
+    // Function initiates connection to portal, using settings from User Defaults
     public func connectToPortal(_ completion:@escaping (_ error:Any?)->Void) {
         var host = "",port="80",login="",password=""
         
@@ -56,6 +68,8 @@ public class RelayboardApplication: NSObject {
         }
     }
     
+    // Function fetches relayboard data from portal as a JSON object, parses it and constructs Relayboards and Sensors
+    // objects, using fetched data
     public func getRelayboardsConfig(_ completion:@escaping (_ error: Any?)->Void)  {
         self.relayboards = [String:Relayboard]()
         self.Meteor?.callMethod(withName: "getConfig", parameters: nil, completionHandler: { (result, err) in
@@ -87,6 +101,9 @@ public class RelayboardApplication: NSObject {
         })
     }
 
+    // Function fetches current status of relayboards and their sensors from portal as a JSON object
+    // and passes this status to appropriate Relayboard objects, which then set new data and notify User interface
+    // controllers to update interface with new data
     @objc func getRelayboardsStatus() {
         self.Meteor?.callMethod(withName: "getStatus", parameters: nil, completionHandler: { (result, err) in
             if (err != nil) {
@@ -117,6 +134,7 @@ public class RelayboardApplication: NSObject {
         })
     }
     
+    // Function which frist connects to portal and then fetches data from it
     public func initConfig(_ completion:@escaping (_ error: Any?) -> Void) {
         
         connectToPortal({(error) in
@@ -136,6 +154,7 @@ public class RelayboardApplication: NSObject {
         })
     }
     
+    // Utility function used to get relayboard by positional integer index from named dictionary
     public func getRelayboardByIndex(_ index: Int) -> Relayboard? {
         var result: Relayboard?
         if let relayboards = self.relayboards {
@@ -150,10 +169,7 @@ public class RelayboardApplication: NSObject {
         return result
     }
     
-    public func isDataLoaded() -> Bool {
-        return relayboards != nil
-    }
-    
+    // Constructor which ensures that only single RelayboardApplication object can exist (singleton pattern)
     private override init() {
     }
     

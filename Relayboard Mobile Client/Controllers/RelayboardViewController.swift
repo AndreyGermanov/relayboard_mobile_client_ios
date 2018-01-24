@@ -2,20 +2,26 @@
 //  RelayboardViewController.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 19.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 19.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// View controller for Relay Sensors Screen
 
 import UIKit
 
 class RelayboardViewController: UIViewController {
 
+    // Outlet for navigation bar
     @IBOutlet weak var navBar: UINavigationBar!
     
+    // Outlet for table
     @IBOutlet weak var tableView: UITableView!
     
+    // Outlet for label with last status update timestamp
     @IBOutlet weak var timestampLabel: UILabel!
     
+    // Runs when screen appears for the first time. Setup required observers, delegates and fills selected relayboard data
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -27,6 +33,7 @@ class RelayboardViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: Notification.Name(rawValue:"RELAYBOARDS_STATUS_UPDATED"), object: nil)
     }
     
+    // Runs every time when screen appears. Update data in header and in table with newest data of selected relayboard
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let relayboard = RelayboardApplication.shared.selectedRelayboard {
@@ -35,6 +42,7 @@ class RelayboardViewController: UIViewController {
         tableView.reloadData()
     }
     
+    // Handler of "RELAYBOARDS_STATUS_UPDATE" notification. Updated status timestamp and information about sensors in the table
     @objc func refreshView() {
         
         if let relayboard = RelayboardApplication.shared.selectedRelayboard {
@@ -52,7 +60,11 @@ class RelayboardViewController: UIViewController {
 
 }
 
+// MARK: Table View event handlers
+
 extension RelayboardViewController : UITableViewDelegate, UITableViewDataSource {
+
+    // Setup number of rows in section of table. It equals to a count of sensors of current relayboard
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var result = 0
         if let relayboard = RelayboardApplication.shared.selectedRelayboard {
@@ -63,6 +75,8 @@ extension RelayboardViewController : UITableViewDelegate, UITableViewDataSource 
         return result
     }
     
+    // Table cell display handler. Fills a cell with information about sensor, depending on it type and returns
+    // cell object
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = SensorTableViewCell()
         if let relayboard = RelayboardApplication.shared.selectedRelayboard {
@@ -95,6 +109,7 @@ extension RelayboardViewController : UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    // Setup height of table row, depending on current sensor type
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var result = tableView.rowHeight
         if let relayboard = RelayboardApplication.shared.selectedRelayboard {

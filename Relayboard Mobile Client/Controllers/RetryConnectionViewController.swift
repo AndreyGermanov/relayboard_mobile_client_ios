@@ -2,9 +2,11 @@
 //  RetryConnectionViewController.swift
 //  Relayboard Mobile Client
 //
-//  Created by user on 20.01.2018.
-//  Copyright © 2018 Andrey. All rights reserved.
+//  Created by Andrey Germanov on 20.01.2018.
+//  Copyright © 2018 Andrey Germanov. All rights reserved.
 //
+
+// View controller for "Reconnect" screen
 
 import UIKit
 
